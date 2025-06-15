@@ -29,7 +29,6 @@ class BookingApiTest extends TestCase
             'seats_booked' => 3,
         ]);
 
-        $response->dump(); // يشوف الرد لو فيه خطأ
         $response->assertStatus(200);
 
         $this->assertDatabaseHas('bookings', [
