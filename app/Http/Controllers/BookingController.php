@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBookingRequest;
 use App\Http\Resources\BookingResource;
 use App\Services\BookingService;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotations as OA;
 
 class BookingController extends Controller
 {
@@ -16,6 +17,30 @@ class BookingController extends Controller
         $this->bookingService = $bookingService;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/bookings",
+     *     summary="Book seats for an event",
+     *     tags={"Bookings"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"event_id", "seats_booked"},
+     *             @OA\Property(property="event_id", type="integer", example=1),
+     *             @OA\Property(property="seats_booked", type="integer", example=2)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Booking successful",
+     *         @OA\JsonContent(ref="#/components/schemas/Booking")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
     public function store(StoreBookingRequest $request)
     {
         $userId = Auth::id() ?? 1;
