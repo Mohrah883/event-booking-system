@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 /**
  * @OA\Info(
- *     title="Event Booking API",
+ *     title="Event Booking System",
  *     version="1.0",
- *     description="API documentation for booking events",
+ *     description="Simple API for event booking management",
  *     @OA\Contact(
  *         email="mohrahalzkari3@gmail.com"
  *     )
