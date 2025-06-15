@@ -29,7 +29,7 @@ class BookingApiTest extends TestCase
             'seats_booked' => 3,
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
 
         $this->assertDatabaseHas('bookings', [
             'event_id' => $event->id,
